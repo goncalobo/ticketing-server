@@ -16,13 +16,22 @@
             position: relative;
         }
 
+        .details {
+            position: absolute;
+            bottom: 8vw;
+            right: 8vw;
+            color: white;
+            text-align: right;
+            font-size: 2vw;
+        }
+
         .ticket {
             width: 100%;
         }
 
         .ticketContainer {
             width: 100%;
-            height: 100%;
+            position: relative;
         }
 
         .qrCode {
@@ -43,6 +52,15 @@
 
 <body onload="window.print()">
     <div class="ticketContainer">
+        <div class="details">
+            <div><b>
+                    <%=content.first_name%>
+                        <%=content.last_name%>
+                </b></div>
+            <div>
+                <%=content.occupation%>
+            </div>
+        </div>
         <img class="qrCode" src=<%=src%> alt="QR Code Image">
         <img class="ticket" src='assets/bg.jpeg'>
     </div>
