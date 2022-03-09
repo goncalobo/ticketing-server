@@ -68,5 +68,5 @@ app.post("/scan", (req, res) => {
 });
 
 // Setting up the port for listening requests
-const port = 3000;
-app.listen(port, () => console.log("Server at 3000"));
+const port = (process.env.PORT || 3000);
+app.listen(port, () => console.log(`Server at ${port}`));
