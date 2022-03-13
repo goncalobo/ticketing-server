@@ -7,7 +7,7 @@
         }
 
         body {
-            margin: 2vw;
+            margin: 4vw;
         }
 
         .container {
@@ -37,32 +37,29 @@
         .qrCode {
             position: absolute;
             right: 5vw;
-            width: 20vw;
-            height: 20vw;
+            width: 30vw;
+            height: 30vw;
             top: 5vw;
         }
 
         @media print {
             @page {
-                margin: 2vw;
+                margin: 4vw;
             }
         }
     </style>
 </head>
 
-<body onload="window.print()">
+<body>
     <div class="ticketContainer">
         <div class="details">
-            <div><b>
-                    <%=content.first_name%>
-                        <%=content.last_name%>
-                </b></div>
+            <div><b><%=attendee.first_name%> <%=attendee.last_name%></b></div>
             <div>
-                <%=content.occupation%>
+                <%=attendee.occupation%>
             </div>
         </div>
-        <img class="qrCode" src=<%=src%> alt="QR Code Image">
-        <img class="ticket" src='assets/bg.jpeg'>
+        <img class="qrCode" src=<%=assets.qrCode%> alt="QR Code Image">
+        <img class="ticket" src=<%=assets.background%>>
     </div>
 </body>
 
