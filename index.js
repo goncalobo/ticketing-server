@@ -106,7 +106,7 @@ app.post("/ticket", (req, res) => {
                                 } else {
                                     const mailOptions = {
                                         from: `matosinhos.tech 🏖<${process.env.MAIL_USERNAME}>`,
-                                        to: 'goncalobo+test@gmail.com',
+                                        to: email,
                                         subject: 'matosinhos.tech 🏖 live event',
                                         text: "Please show your ticket at the venue",
                                         attachments: {
