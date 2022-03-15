@@ -43,6 +43,9 @@ const ticketSchema = new mongoose.Schema({
     last_name: String,
     occupation: String,
     email: String,
+    created_at: Date,
+    validated: Boolean,
+    validated_at: Date,
 });
 
 const Ticket = mongoose.model('Ticket', ticketSchema);
@@ -52,14 +55,40 @@ app.use(bp.urlencoded({ extended: false }));
 app.use(bp.json());
 app.use(express.static('public'))
 
+app.post("/validate", (req, res) => {
+    const { id } = req.body;
+
+    Ticket.findByIdAndUpdate(id, { validated: true, validated_at: new Date() }, function (err, ticket) {
+        if (err) {
+            res.send({
+                status: 'error',
+                message: 'Ticket not found.',
+            });
+        // } else if (ticket.validated) {
+        //     res.send({
+        //         status: 'error',
+        //         message: 'Ticket was already validated.',
+        //     });
+        // }
+        } else {
+            res.send({
+                status: 'success',
+                message: 'Ticket was validated!',
+            });
+        };
+    });
+});
+
 app.post("/ticket", (req, res) => {
     const { first_name, last_name, occupation, email } = req.body;
+    const created_at = new Date();
 
     Ticket.find({ email }, function (err, tickets) {
         // Emit new ticket if there are no tickets
         // were issued yet for given email.
         if (tickets.length === 0) {
-            const ticket = new Ticket({ first_name, last_name, occupation, email });
+            // Create new ticket
+            const ticket = new Ticket({ first_name, last_name, occupation, email, created_at, validated: false });
 
             ticket.save().then((r) => {
                 const attendee = {
@@ -68,6 +97,7 @@ app.post("/ticket", (req, res) => {
                     last_name,
                     occupation,
                     email,
+                    created_at,
                 }
 
                 // Create ticket's unique QRCode
