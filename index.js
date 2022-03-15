@@ -59,7 +59,7 @@ app.post("/validate", (req, res) => {
     const { id } = req.body;
 
     Ticket.findByIdAndUpdate(id, { validated: true, validated_at: new Date() }, function (err, ticket) {
-        if (err) {
+        if (err || !ticket) {
             res.send({
                 status: 'error',
                 message: 'Ticket not found.',
