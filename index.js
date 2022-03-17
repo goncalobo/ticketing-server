@@ -64,12 +64,11 @@ app.post("/validate", (req, res) => {
                 status: 'error',
                 message: 'Ticket not found.',
             });
-        // } else if (ticket.validated) {
-        //     res.send({
-        //         status: 'error',
-        //         message: 'Ticket was already validated.',
-        //     });
-        // }
+        } else if (ticket.validated) {
+            res.send({
+                status: 'success',
+                message: 'Ticket was already validated.',
+            });
         } else {
             res.send({
                 status: 'success',
@@ -139,16 +138,16 @@ app.post("/ticket", (req, res) => {
                                         to: email,
                                         subject: 'matosinhos.tech 🏖 live event',
                                         html: "<p>Congratulations, you got a ticket!</p>" +
-                                        "<p>You're going to matosinhos.tech <b>event.07</b> 🏖 startup techstacks & asynchronous services.</p>" +
-                                        "<p>As you know, this event will be in-person, so save your ticket to present at the door of Câmara Municipal de Matosinhos.</p>" +
-                                        "<p>Keep in mind that doors will open at 18:30, the event will start at 19:00, and we'll have food and drinks to welcome you. At the end of the event, you'll have a chance to network, meet and greet the speakers and members of our community.</p>" +
-                                        "<p>Information:" +
-                                        "<ul><li><b>date:</b> 31 March 2022</li>" +
-                                        "<li><b>start time:</b> 19:00<br/></li>" +
-                                        "<li><b>address:</b> Avenida Dom Afonso Henriques, 4454-510(CM Matosinhos)</li></ul></p>" +
-                                        "<p>If you need any other information or contact us, please use hello@matosinhos.tech" +
-                                        "<p>See you there 👋<br/>" +
-                                        "matosinhos.tech<br/>",
+                                            "<p>You're going to matosinhos.tech <b>event.07</b> 🏖 startup techstacks & asynchronous services.</p>" +
+                                            "<p>As you know, this event will be in-person, so save your ticket to present at the door of Câmara Municipal de Matosinhos.</p>" +
+                                            "<p>Keep in mind that doors will open at 18:30, the event will start at 19:00, and we'll have food and drinks to welcome you. At the end of the event, you'll have a chance to network, meet and greet the speakers and members of our community.</p>" +
+                                            "<p>Information:" +
+                                            "<ul><li><b>date:</b> 31 March 2022</li>" +
+                                            "<li><b>start time:</b> 19:00<br/></li>" +
+                                            "<li><b>address:</b> Avenida Dom Afonso Henriques, 4454-510(CM Matosinhos)</li></ul></p>" +
+                                            "<p>If you need any other information or contact us, please use hello@matosinhos.tech" +
+                                            "<p>See you there 👋<br/>" +
+                                            "matosinhos.tech<br/>",
                                         attachments: {
                                             filename: filename,
                                             path: `./temp/${filename}`,
