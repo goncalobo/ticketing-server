@@ -9,11 +9,11 @@ const ejs = require("ejs");
 const pdf = require("html-pdf");
 const path = require("path");
 const fs = require('fs');
-const cors = require('cors')
+const cors = require('cors');
 
 
 // Assets
-const background = 'data:image/jpeg;base64,' + fs.readFileSync('./public/assets/ticket_13_04.jpg', 'base64');
+const background = 'data:image/jpeg;base64,' + fs.readFileSync('./public/assets/ticket_07_biblioteca.jpg', 'base64');
 
 const app = express();
 app.use(cors())
@@ -136,24 +136,18 @@ app.post("/ticket", (req, res) => {
                                     const mailOptions = {
                                         from: `matosinhos.tech 🏖<${process.env.MAIL_USERNAME}>`,
                                         to: email,
-                                        subject: '[update] matosinhos.tech 🏖 live event',
-                                        // html: "<p>Congratulations, you got a ticket!</p>" +
-                                        //     "<p>You're going to matosinhos.tech <b>event.07</b> 🏖 startup techstacks & asynchronous services.</p>" +
-                                        //     "<p>As you know, this event will be in-person, so save your ticket.</p>" + // + to present at the door of Câmara Municipal de Matosinhos.</p>" +
-                                        //     "<p>Keep in mind that doors will open at 18:30, the event will start at 19:00, and we'll have food and drinks to welcome you. At the end of the event, you'll have a chance to network, meet and greet the speakers and members of our community.</p>" +
-                                        //     "<p>Information:" +
-                                        //     "<ul><li><b>date:</b> 31 March 2022</li>" +
-                                        //     "<li><b>start time:</b> 19:00<br/></li>" +
-                                        //     //"<li><b>address:</b> Avenida Dom Afonso Henriques, 4454-510(CM Matosinhos)</li></ul></p>" +
-                                        //     "<p>If you need any other information or contact us, please use hello@matosinhos.tech" +
-                                        //     "<p>See you there 👋<br/>" +
-                                        //     "matosinhos.tech<br/>",
-                                        html: "<p>Hello.</p>" +
-                                            "<p>Due to an unfortunate circumstance, we need to postpone our event.07, asynchronous services & startups tech stacks, until the 13th of April.</p>" +
-                                            "<p>You don't need to do anything except enjoy a fantastic event and network with the tech community of Matosinhos on the day of the event.</p>" +
-                                            "<p>If you have any other questions or need more information, please contact us, and we'll reply briefly.</p>" +
-                                            "<p>Thank you,</p>" +
-                                            "matosinhos.tech",
+                                        subject: 'matosinhos.tech 🏖 live event',
+                                        html: "<p>Congratulations, you got a ticket!</p>" +
+                                            "<p>You're going to matosinhos.tech <b>event.07</b> 🏖 startup techstacks & asynchronous services.</p>" +
+                                            "<p>As you know, this event will be in-person, so save your ticket.</p>" +
+                                            "<p>Keep in mind that doors will open at 18:30, the event will start at 19:00, and we'll have food and drinks to welcome you. At the end of the event, you'll have a chance to network, meet and greet the speakers and members of our community.</p>" +
+                                            "<p>Information:" +
+                                            "<ul><li><b>date:</b> April 13th 2022</li>" +
+                                            "<li><b>start time:</b> 19:00<br/></li>" +
+                                            "<li><b>address:</b> Avenida Dom Afonso Henriques, 4454-510 (CM Matosinhos)</li></ul></p>" +
+                                            "<p>If you need any other information or contact us, please use hello@matosinhos.tech" +
+                                            "<p>See you there 👋<br/>" +
+                                            "matosinhos.tech<br/>",
                                         attachments: {
                                             filename: filename,
                                             path: `./temp/${filename}`,
