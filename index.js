@@ -13,7 +13,7 @@ const cors = require('cors');
 
 
 // Assets
-const background = 'data:image/jpeg;base64,' + fs.readFileSync('./public/assets/ticket_07_biblioteca.jpg', 'base64');
+const background = 'data:image/jpeg;base64,' + fs.readFileSync('./public/assets/ticket.jpg', 'base64');
 
 const app = express();
 app.use(cors())
