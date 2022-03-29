@@ -185,5 +185,23 @@ app.post("/ticket", (req, res) => {
     });
 });
 
+app.get("/stats", (req, res) => {
+    Ticket.countDocuments({ validated: true }).exec((err, validated) => {
+        if (err) {
+            res.send(err);
+            return;
+        }
+
+        Ticket.countDocuments({}).exec((err, total) => {
+            if (err) {
+                res.send(err);
+                return;
+            }
+
+            res.render("stats", { validated, total });
+        });
+    });
+});
+
 const port = (process.env.PORT || 3000);
 app.listen(port, () => console.log(`Server at ${port}`));
